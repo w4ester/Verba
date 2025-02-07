@@ -1,7 +1,6 @@
 import base64
 import json
 from datetime import datetime
-import requests
 import os
 import re
 import urllib
@@ -11,6 +10,7 @@ from wasabi import msg
 from goldenverba.components.document import Document
 from goldenverba.components.interfaces import Reader
 from goldenverba.components.types import FileData
+from security import safe_requests
 
 
 class GitLabReader(Reader):
@@ -95,7 +95,7 @@ class GitLabReader(Reader):
         headers = {
             "Authorization": f"Bearer {os.environ.get('GITLAB_TOKEN', '')}",
         }
-        response = requests.get(url, headers=headers)
+        response = safe_requests.get(url, headers=headers)
         response.raise_for_status()
 
         files = [
@@ -130,7 +130,7 @@ class GitLabReader(Reader):
         headers = {
             "Authorization": f"Bearer {os.environ.get('GITLAB_TOKEN', '')}",
         }
-        response = requests.get(url, headers=headers)
+        response = safe_requests.get(url, headers=headers)
         response.raise_for_status()
 
         content = response.text

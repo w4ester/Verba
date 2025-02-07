@@ -36,6 +36,7 @@ setup(
         "requests==2.31.0",
         "pypdf==4.2.0",
         "python-docx==1.1.2",
+        "security==1.3.1",
     ],
     extras_require={
         "dev": ["pytest", "wheel", "twine", "black>=23.7.0", "setuptools"],
