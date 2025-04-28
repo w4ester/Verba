@@ -101,7 +101,7 @@ class GitHubReader(Reader):
             "Authorization": f"token {os.environ.get('GITHUB_TOKEN', '')}",
             "Accept": "application/vnd.github.v3+json",
         }
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, timeout=60)
         response.raise_for_status()  # Raise an exception for HTTP errors
 
         files = [
@@ -142,7 +142,7 @@ class GitHubReader(Reader):
             "Authorization": f"token {os.environ.get('GITHUB_TOKEN', '')}",
             "Accept": "application/vnd.github.v3+json",
         }
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, timeout=60)
         response.raise_for_status()
 
         content_b64 = response.json()["content"]
