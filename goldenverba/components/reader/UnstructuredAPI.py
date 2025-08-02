@@ -59,8 +59,8 @@ class UnstructuredReader(Reader):
 
             try:
                 response = requests.post(
-                    url, headers=headers, data=data, files=file_data
-                )
+                    url, headers=headers, data=data, files=file_data, 
+                timeout=60)
                 json_response = response.json()
                 
                 if "detail" in json_response:
