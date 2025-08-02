@@ -44,7 +44,7 @@ class OllamaEmbedder(Embedder):
             embeddings = []
             embedding_url = self.url + "/api/embeddings"
             data = {"model": self.model, "prompt": chunk}
-            response = requests.post(embedding_url, json=data)
+            response = requests.post(embedding_url, json=data, timeout=60)
             json_data = json.loads(response.text)
             embeddings = json_data.get("embedding", [])
             return embeddings
